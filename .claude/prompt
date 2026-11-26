@@ -1,0 +1,59 @@
+Read `CLAUDE.md` in the repository root carefully. It is the authoritative description of this
+project: business rules, domain model, architecture, stack, environments and working agreements.
+The "Golden rules" section is non-negotiable.
+
+## Your task now: plan only, no implementation
+
+Create `docs/IMPLEMENTATION_PLAN.md`: a multi-phase implementation plan for the MVP described in
+`CLAUDE.md`. Do not write application code yet. After writing the plan, stop and wait for my
+approval.
+
+### Requirements for the plan
+
+1. **Phases**, each small enough to finish and review in one or a few sessions. Use this order
+   unless you have a strong, explained reason to change it:
+   - **Phase 0. Scaffolding:** monorepo structure, Maven backend skeleton, Vite/Vue/TS/Tailwind
+     frontend skeleton, vue-i18n and backend `MessageSource` wired with PL/EN from the start,
+     `.env.example`, configuration for connecting to my existing PostgreSQL 17 and Mailpit
+     containers, Flyway baseline, Testcontainers setup, ArchUnit module rules, TeamCity build
+     (Kotlin DSL) and publishing to Nexus.
+   - **Phase 1. Auth and notification foundation:** registration with email verification, login
+     (session + CSRF), Google OAuth, password reset, user locale; transactional outbox,
+     dispatcher and `EmailChannel` with localized Thymeleaf templates (verified via Mailpit).
+   - **Phase 2. Item pool and scraping:** start with the scraping spike and
+     `docs/scraper-report.md` for Allegro, Amazon, x-kom, Komputronik, Media Expert and Rossmann;
+     then `ProductExtractor` SPI, generic fallback, per-shop extractors justified by the report,
+     the SSRF-safe HTTP client, image download/resize/storage, item CRUD, statuses and archive.
+   - **Phase 3. Wishlists:** lists as selections from the pool, occasion/date, share token
+     (generate/revoke/regenerate).
+   - **Phase 4. Circles and invitations:** max 5 circles per owner, email invitations,
+     accept/decline, registration from an invitation.
+   - **Phase 5. Sharing and giver views:** list ↔ circle sharing, giver view for circle members,
+     public link view, owner-opens-own-link detection, separate owner/giver DTOs.
+   - **Phase 6. Reservations and conflicts:** logged-in reservations, guest reservation with
+     Turnstile, rate limiting, PENDING → CONFIRMED by email, cancel link, 24 h expiry job,
+     reserver-name visibility rules, both conflict types, and spoiler-protection tests across
+     ALL item-returning endpoints.
+   - **Phase 7. In-app notifications, Web Push and PWA:** notification center, notification
+     preferences per event type and channel, VAPID Web Push with the service worker,
+     iOS install guidance, all MVP event types, responsive desktop/mobile layouts, clipboard
+     paste, Android Web Share Target.
+   - **Phase 8. Privacy and production:** account deletion, guest data cleanup, privacy policy
+     page, `docker-compose.prod.yml`, nginx with Let's Encrypt, backups, deployment runbook
+     for the VPS, email domain setup checklist (SPF/DKIM/DMARC).
+2. For every phase list: goal, scope (backend / frontend / infra), Flyway migrations,
+   API endpoints, i18n keys area, tests to write, **acceptance criteria** I can verify manually,
+   and risks/open questions.
+3. Include a section **"Spoiler protection test strategy"**: how you will guarantee and
+   regression-test that owners never receive reservation data through any API response or
+   notification.
+4. Include a section **"Decisions needing my input"** for anything in `CLAUDE.md` that is
+   ambiguous or that you would do differently. Do not resolve those silently.
+5. Check the current stable versions of Java LTS, Spring Boot, Vue, Vite, Tailwind and
+   vite-plugin-pwa, and record them in the plan.
+
+### After I approve the plan
+Implement one phase at a time. At the end of each phase: run all tests, update `.env.example`
+and docs, commit with conventional commit messages, then summarize what was done, how I can
+verify it (including what to check in Mailpit / the browser), and what the next phase is.
+Wait for my "go" before starting the next phase.
