@@ -68,10 +68,12 @@ Archive view = items with status other than `ACTIVE`.
 
 ### Visibility rules
 - **Owner:** sees own items, lists, circles; never reservation data.
-- **Circle member** viewing a list shared with their circle: sees items and reservation status.
-  Sees the reserver's *name* only if the reserver is a member of the same circle; otherwise
-  only "reserved".
-- **Link visitor (anonymous):** sees items and "reserved" (no names).
+- **Circle member** viewing a list shared with their circle: sees items and reservation status
+  ("reserved" / "reserved by you"). **The reserver's identity (name, email) is never shown to
+  other givers.** To reach the reserver, a giver uses "Ask the reserver" (conflict request): the
+  app emails the reserver, and the reserver decides whether to reply. The reserver's email is
+  exposed only if the reserver writes back.
+- **Link visitor (anonymous):** sees items and "reserved" (no identity).
 - Circle members of the same circle can see each other (needed for future group gifts).
 
 ### Reservation flows
