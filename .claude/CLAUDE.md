@@ -1,11 +1,25 @@
-# CLAUDE.md — Wishlist (working name)
+# CLAUDE.md — Wishka
 
-Web app (PWA) where users collect things they want, group them into wishlists and share
-those lists with their circles (family, friends) or via a link, so others can reserve
-and buy gifts **without the recipient finding out**.
+**Wishka** (production domain: `wishka.pl`) is a web app (PWA) where users collect things they
+want, group them into wishlists and share those lists with their circles (family, friends) or
+via a link, so others can reserve and buy gifts **without the recipient finding out**.
 
 Phase 1 audience: the author and his family. Target: public product on the Polish market.
 UI languages: Polish (default) and English from day one.
+
+### Naming and branding
+- Product name: **Wishka**. It is a brand name: never translated, same in PL and EN, always
+  written "Wishka" (capital W) in UI text, emails, push notifications, PWA manifest
+  (`name`, `short_name`) and page titles.
+- The product name and domain are **configuration, not literals** scattered in code: use a
+  single `app.name` / `APP_NAME` setting and `APP_BASE_URL` (prod: `https://wishka.pl`) for
+  every absolute link (emails, push, share links, OAuth redirect URIs).
+- Technical names use lowercase `wishka`: Java base package and Maven `groupId` `pl.wishka`,
+  artifacts `wishka-backend` / `wishka-frontend`, Docker images `wishka-backend` /
+  `wishka-frontend`, DB name `wishka`. (Defaults. Flag in the plan if you see a reason to
+  change them.)
+- Email sender display name: "Wishka". The sender address is on `wishka.pl` and comes from
+  configuration (`MAIL_FROM`); the author supplies the exact address.
 
 ---
 
@@ -119,8 +133,8 @@ Before choosing exact versions, check the latest stable releases; do not rely on
 ## 5. Repository layout (monorepo)
 
 ```
-/backend                 Spring Boot app
-  src/main/java/.../
+/backend                 Spring Boot app (base package pl.wishka)
+  src/main/java/pl/wishka/
     common/              errors, i18n, security utils, SSRF-safe HTTP client
     auth/                registration, login, Google OAuth, email verification, password reset
     user/                profile, locale, notification preferences, account deletion
@@ -166,6 +180,8 @@ another module's repositories. Enforce with ArchUnit.
 
 - Languages: `pl` (default), `en`. Every new text means a key in **both** dictionaries in the
   same commit.
+- The brand name "Wishka" is not translated. Reference it through the `app.name` setting or
+  an interpolation parameter, not a literal in each string.
 - Frontend: vue-i18n, keys namespaced by feature (`items.form.name`). Locale from the user
   profile, otherwise from the browser.
 - Backend: `messages_pl.properties` / `messages_en.properties`, email templates
@@ -197,10 +213,12 @@ another module's repositories. Enforce with ArchUnit.
 - TeamCity pipeline: backend build + tests, frontend lint + tests + build, Docker images
   pushed to Nexus. Testcontainers requires Docker access on the agent; document it.
 
-**Prod:** VPS with Docker Compose: `nginx` (TLS via Let's Encrypt, serves the frontend,
-proxies `/api`), `backend`, `postgres`, plus a daily `pg_dump` backup with retention.
+**Prod:** VPS with Docker Compose, served at `https://wishka.pl` (`www` redirects to the
+apex domain): `nginx` (TLS via Let's Encrypt, serves the frontend, proxies `/api`),
+`backend`, `postgres`, plus a daily `pg_dump` backup with retention.
 Secrets only via env/`.env` (never committed). Transactional email provider on the
-author's own domain (SPF, DKIM, DMARC).
+`wishka.pl` domain (SPF, DKIM, DMARC). Environment-specific values (`APP_BASE_URL`,
+`APP_NAME`, `MAIL_FROM`) live in configuration, never in code.
 
 ---
 
