@@ -35,6 +35,20 @@ const datetimeFormats = {
   },
 } as const
 
+/**
+ * Polish plurals have three forms: 1 pole, 2–4 pola (except 12–14), 5+ pól. Messages use
+ * `one | few | many`, e.g. "Popraw {count} pole | Popraw {count} pola | Popraw {count} pól".
+ */
+export function polishPlural(choice: number): number {
+  const n = Math.abs(choice)
+  if (n === 1) {
+    return 0
+  }
+  const lastDigit = n % 10
+  const lastTwo = n % 100
+  return lastDigit >= 2 && lastDigit <= 4 && (lastTwo < 12 || lastTwo > 14) ? 1 : 2
+}
+
 export function createAppI18n(locale: AppLocale = DEFAULT_LOCALE) {
   return createI18n<[MessageSchema], AppLocale, false>({
     legacy: false,
@@ -43,6 +57,7 @@ export function createAppI18n(locale: AppLocale = DEFAULT_LOCALE) {
     messages: { pl: { ...pl, ...brand }, en: { ...en, ...brand } },
     numberFormats,
     datetimeFormats,
+    pluralRules: { pl: polishPlural },
     missingWarn: import.meta.env.DEV,
     fallbackWarn: import.meta.env.DEV,
   })

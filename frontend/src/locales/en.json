@@ -5,22 +5,201 @@
       "pl": "Polski",
       "en": "English"
     },
-    "close": "Close"
+    "close": "Close",
+    "cancel": "Cancel",
+    "loading": "Loading…",
+    "retry": "Retry"
   },
-  "home": {
-    "title": "@:app.name",
-    "tagline": "Wishlists for family and friends, without spoiling the surprise.",
-    "comingSoon": "We're working on the first version. More soon.",
-    "apiStatus": {
-      "label": "Server status",
-      "checking": "Checking the connection…",
-      "ok": "Server is running",
-      "error": "Can't reach the server"
-    }
+  "nav": {
+    "main": "Main navigation",
+    "items": "My items",
+    "itemsShort": "Items",
+    "lists": "My lists",
+    "listsShort": "Lists",
+    "circles": "Circles",
+    "shared": "Shared with me",
+    "sharedShort": "Shared",
+    "reservations": "My reservations",
+    "notifications": "Notifications",
+    "profile": "Profile and settings",
+    "more": "More",
+    "logout": "Log out",
+    "accountMenu": "Account menu",
+    "languageCurrent": "Language: {language}",
+    "skipToContent": "Skip to content"
+  },
+  "comingSoon": {
+    "title": "Coming soon",
+    "text": "This part of the app is being built. Check back in the next version."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "placeholder": "The full privacy policy will be published before the public launch."
   },
   "notFound": {
     "title": "This page doesn't exist",
     "backHome": "Back to the home page"
+  },
+  "auth": {
+    "pitch": {
+      "title": "Gifts that delight. No duplicates.",
+      "subtitle": "Collect what you'd like to get and share your lists with family and friends.",
+      "paste": "Paste a shop link — the name, price and photo fill in by themselves.",
+      "share": "Share with your circles — family, friends or via a link.",
+      "surprise": "Surprises stay surprises — you'll never see what someone reserved."
+    },
+    "orEmail": "or with email",
+    "google": {
+      "continue": "Continue with Google"
+    },
+    "backToLogin": "Back to login",
+    "fields": {
+      "email": "Email address",
+      "password": "Password",
+      "displayName": "Name or nickname",
+      "newPassword": "New password",
+      "repeatPassword": "Repeat new password",
+      "currentPassword": "Current password"
+    },
+    "password": {
+      "show": "Show password",
+      "hide": "Hide password",
+      "rule": "At least 10 characters. Easiest with a few words, e.g. puss-in-boots-2027.",
+      "strengthLabel": "Password strength: {level}",
+      "strength": {
+        "weak": "Weak",
+        "medium": "Medium",
+        "good": "Good",
+        "veryGood": "Very good"
+      },
+      "strengthHint": {
+        "weak": "Too short or too simple — add a few characters.",
+        "medium": "Add another word or a number.",
+        "good": "Good to go.",
+        "veryGood": "Great!"
+      }
+    },
+    "validation": {
+      "emailRequired": "Enter your email address.",
+      "emailInvalid": "That doesn't look like an email address.",
+      "passwordRequired": "Enter your password.",
+      "passwordTooShort": "The password is too short — it needs at least 10 characters.",
+      "passwordsDiffer": "The passwords don't match. Please type them again.",
+      "displayNameRequired": "Enter how your family and friends should see you.",
+      "consentRequired": "Tick the box to create an account."
+    },
+    "login": {
+      "title": "Log in",
+      "subtitle": "Welcome back! Your lists are waiting.",
+      "forgot": "Forgot your password?",
+      "submit": "Log in",
+      "submitting": "Logging in…",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create an account",
+      "failedTitle": "Couldn't log in",
+      "failedText": "The email or password is incorrect. Check them and try again.",
+      "retypePassword": "Type your password again.",
+      "oauthFailed": "Signing in with Google didn't work. Please try again."
+    },
+    "register": {
+      "title": "Create an account",
+      "displayNameHint": "This is how your family and friends will see you.",
+      "consent": "I accept the {policy} and know how my data is processed.",
+      "policyLink": "privacy policy",
+      "submit": "Create account",
+      "submitting": "Creating your account…",
+      "haveAccount": "Already have an account?",
+      "fixFields": "Fix {count} field | Fix {count} fields",
+      "fixFieldsText": "We've marked them below.",
+      "emailTaken": "An account with this address already exists. Log in or reset your password."
+    },
+    "inbox": {
+      "title": "Check your inbox",
+      "text": "We've sent a link to {email}. Click it to confirm your address. The link is valid for 24 hours.",
+      "spamHint": "Can't see the email? Check your “Promotions” or “Spam” folder.",
+      "resendIn": "You can resend in {time}",
+      "goToApp": "Go to the app"
+    },
+    "verify": {
+      "pageTitle": "Email confirmation",
+      "verifying": "Confirming your address…",
+      "successTitle": "Address confirmed",
+      "successText": "Thank you! You can now share lists, invite your family and friends, and reserve gifts.",
+      "start": "Let's start",
+      "expiredTitle": "This link has expired",
+      "expiredText": "Confirmation links are valid for 24 hours. We'll send you a new one — it only takes a moment.",
+      "newLinkTo": "The link will go to {email}.",
+      "sendNewLink": "Send a new link",
+      "loginToResend": "Log in to get a new link",
+      "resend": "Resend",
+      "resendIn": "Resend ({time})",
+      "resent": "We've sent a new link to {email}.",
+      "bannerRegion": "Email confirmation",
+      "bannerTitle": "Confirm your email address",
+      "bannerText": "Click the link we sent to {email}. Until then you can add 5 items — sharing and reservations unlock once you confirm.",
+      "bannerDismiss": "Hide until next login"
+    },
+    "forgot": {
+      "title": "Forgot your password?",
+      "text": "Enter your account's email address. We'll send you a link to set a new password.",
+      "submit": "Send link",
+      "sentText": "If there's an account for {email}, we've sent it a link to change the password. The link is valid for 1 hour.",
+      "sentHint": "Nothing arrived? Check your “Spam” folder or make sure it's the right address.",
+      "googleHint": "Do you sign in with Google? Then you don't need a password — {link}.",
+      "googleHintLink": "go back and choose “Continue with Google”"
+    },
+    "reset": {
+      "title": "Set a new password",
+      "forAccount": "For the account {email}",
+      "submit": "Save new password",
+      "logoutNote": "After the change we'll log you out on all devices.",
+      "expiredText": "For security, a password reset link is valid for 1 hour and can be used only once. Ask for a new one.",
+      "doneTitle": "Password changed",
+      "doneText": "Log in with your new password."
+    }
+  },
+  "profile": {
+    "saved": "Changes saved.",
+    "details": {
+      "title": "Your details",
+      "avatarHint": "We show your initials instead of a photo.",
+      "displayName": "Display name",
+      "displayNameHint": "This is how people in your circles see you.",
+      "verified": "Confirmed",
+      "notVerified": "Not confirmed",
+      "emailHint": "The address can't be changed.",
+      "save": "Save changes"
+    },
+    "language": {
+      "title": "App and email language",
+      "hint": "Applies to the app, emails and notifications."
+    },
+    "signIn": {
+      "title": "Sign-in methods",
+      "atLeastOne": "You need at least one.",
+      "passwordSet": "Set",
+      "passwordNotSet": "Not set",
+      "change": "Change",
+      "setPassword": "Set password",
+      "remove": "Remove",
+      "google": "Google",
+      "googleConnected": "Connected · {email}",
+      "googleNotConnected": "Not connected",
+      "unlink": "Disconnect",
+      "connect": "Connect",
+      "lastMethodGoogle": "This is your only sign-in method, so it can't be disconnected. Set a password first.",
+      "lastMethodPassword": "This is your only sign-in method, so it can't be removed.",
+      "changePasswordTitle": "Change password",
+      "setPasswordTitle": "Set a password",
+      "otherDevicesNote": "After the change we'll log you out on other devices.",
+      "passwordSaved": "Password saved.",
+      "passwordRemoved": "Password removed. You sign in with Google.",
+      "googleUnlinked": "Google account disconnected.",
+      "removePasswordTitle": "Remove the password?",
+      "removePasswordText": "You'll sign in only with Google. You can set a password again at any time.",
+      "unlinkGoogleTitle": "Disconnect Google?",
+      "unlinkGoogleText": "You'll sign in only with your password. You can connect Google again at any time."
+    }
   },
   "errors": {
     "BAD_REQUEST": "The request is invalid.",
@@ -34,10 +213,20 @@
     "UNSUPPORTED_MEDIA_TYPE": "Unsupported data format.",
     "TOO_MANY_REQUESTS": "Too many attempts. Please try again in a moment.",
     "INTERNAL": "Something went wrong on our side. Please try again later.",
+    "EMAIL_TAKEN": "An account with this email address already exists.",
+    "INVALID_CREDENTIALS": "Incorrect email or password.",
+    "TOKEN_INVALID_OR_EXPIRED": "This link has expired or has already been used.",
+    "EMAIL_NOT_VERIFIED": "Please confirm your email address first.",
+    "CURRENT_PASSWORD_INVALID": "Your current password is incorrect.",
+    "LAST_LOGIN_METHOD": "This is the only way to log in to your account, so it can't be removed.",
+    "PROVIDER_ALREADY_LINKED": "This Google account is already connected to another account.",
     "NETWORK": "No connection. Check your internet and try again."
   },
   "validation": {
     "NotBlank": "This field is required.",
-    "Email": "Enter a valid email address."
+    "Email": "Enter a valid email address.",
+    "Size": "Invalid length.",
+    "AssertTrue": "This field is required.",
+    "Pattern": "Invalid value."
   }
 }

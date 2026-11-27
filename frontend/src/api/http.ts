@@ -7,9 +7,19 @@ const CSRF_COOKIE = 'XSRF-TOKEN'
 const CSRF_HEADER = 'X-XSRF-TOKEN'
 
 export interface HttpOptions {
-  /** Sent as `Accept-Language`, so backend texts (errors, emails) match the UI language. */
+  /** Sent as `Accept-Language`, so backend texts (errors, emails) match the UI language. Defaults to `<html lang>`. */
   locale?: string
   signal?: AbortSignal
+}
+
+/**
+ * Makes sure the `XSRF-TOKEN` cookie exists before a state-changing request. The backend rotates the token on login
+ * and logout, so the cookie can disappear; asking for it again is cheap.
+ */
+async function ensureCsrfCookie(): Promise<void> {
+  if (!readCookie(CSRF_COOKIE)) {
+    await fetch('/api/auth/csrf', { credentials: 'include' }).catch(() => undefined)
+  }
 }
 
 function readCookie(name: string): string | undefined {
@@ -31,13 +41,15 @@ export async function request<T>(
   options: HttpOptions = {},
 ): Promise<T> {
   const headers: Record<string, string> = { Accept: 'application/json' }
-  if (options.locale) {
-    headers['Accept-Language'] = options.locale
+  const locale = options.locale ?? document.documentElement.lang
+  if (locale) {
+    headers['Accept-Language'] = locale
   }
   if (body !== undefined) {
     headers['Content-Type'] = 'application/json'
   }
   if (!SAFE_METHODS.includes(method)) {
+    await ensureCsrfCookie()
     const token = readCookie(CSRF_COOKIE)
     if (token) {
       headers[CSRF_HEADER] = decodeURIComponent(token)
@@ -63,10 +75,8 @@ export async function request<T>(
   if (!response.ok) {
     throw await toApiError(response)
   }
-  if (response.status === 204) {
-    return undefined as T
-  }
-  return (await response.json()) as T
+  const text = await response.text()
+  return (text ? JSON.parse(text) : undefined) as T
 }
 
 async function toApiError(response: Response): Promise<ApiError> {
