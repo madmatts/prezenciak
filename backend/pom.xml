@@ -24,6 +24,7 @@
         <maven-enforcer.version>3.7.0</maven-enforcer.version>
         <bucket4j.version>8.23.0</bucket4j.version>
         <greenmail.version>2.1.15</greenmail.version>
+        <sonar.organization>madmatts-1</sonar.organization>
     </properties>
 
     <dependencies>
