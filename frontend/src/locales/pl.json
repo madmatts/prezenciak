@@ -5,22 +5,201 @@
       "pl": "Polski",
       "en": "English"
     },
-    "close": "Zamknij"
+    "close": "Zamknij",
+    "cancel": "Anuluj",
+    "loading": "Wczytuję…",
+    "retry": "Ponów"
   },
-  "home": {
-    "title": "@:app.name",
-    "tagline": "Listy życzeń dla rodziny i przyjaciół, bez psucia niespodzianek.",
-    "comingSoon": "Pracujemy nad pierwszą wersją. Wkrótce więcej.",
-    "apiStatus": {
-      "label": "Stan serwera",
-      "checking": "Sprawdzam połączenie…",
-      "ok": "Serwer działa",
-      "error": "Brak połączenia z serwerem"
-    }
+  "nav": {
+    "main": "Nawigacja główna",
+    "items": "Moje rzeczy",
+    "itemsShort": "Rzeczy",
+    "lists": "Moje listy",
+    "listsShort": "Listy",
+    "circles": "Kręgi",
+    "shared": "Udostępnione mi",
+    "sharedShort": "Udostępnione",
+    "reservations": "Moje rezerwacje",
+    "notifications": "Powiadomienia",
+    "profile": "Profil i ustawienia",
+    "more": "Więcej",
+    "logout": "Wyloguj się",
+    "accountMenu": "Menu konta",
+    "languageCurrent": "Język: {language}",
+    "skipToContent": "Przejdź do treści"
+  },
+  "comingSoon": {
+    "title": "Wkrótce",
+    "text": "Ta część aplikacji powstaje. Zajrzyj tu w kolejnej wersji."
+  },
+  "privacy": {
+    "title": "Polityka prywatności",
+    "placeholder": "Pełna treść polityki prywatności pojawi się przed publicznym startem aplikacji."
   },
   "notFound": {
     "title": "Nie ma takiej strony",
     "backHome": "Wróć na stronę główną"
+  },
+  "auth": {
+    "pitch": {
+      "title": "Prezenty, które cieszą. Bez dublowania.",
+      "subtitle": "Zbieraj, co chcesz dostać, i udostępniaj listy rodzinie i przyjaciołom.",
+      "paste": "Wklej link ze sklepu — nazwa, cena i zdjęcie uzupełnią się same.",
+      "share": "Udostępnij kręgom — rodzinie, przyjaciołom albo przez link.",
+      "surprise": "Niespodzianka zostaje niespodzianką — nie zobaczysz, co ktoś zarezerwował."
+    },
+    "orEmail": "albo e-mailem",
+    "google": {
+      "continue": "Kontynuuj z Google"
+    },
+    "backToLogin": "Wróć do logowania",
+    "fields": {
+      "email": "Adres e-mail",
+      "password": "Hasło",
+      "displayName": "Imię lub pseudonim",
+      "newPassword": "Nowe hasło",
+      "repeatPassword": "Powtórz nowe hasło",
+      "currentPassword": "Obecne hasło"
+    },
+    "password": {
+      "show": "Pokaż hasło",
+      "hide": "Ukryj hasło",
+      "rule": "Co najmniej 10 znaków. Najłatwiej z kilku słów, np. kot-w-butach-2027.",
+      "strengthLabel": "Siła hasła: {level}",
+      "strength": {
+        "weak": "Słabe",
+        "medium": "Średnie",
+        "good": "Dobre",
+        "veryGood": "Bardzo dobre"
+      },
+      "strengthHint": {
+        "weak": "Za krótkie lub zbyt proste — dodaj kilka znaków.",
+        "medium": "Dodaj kolejne słowo albo cyfrę.",
+        "good": "Możesz go używać.",
+        "veryGood": "Świetnie!"
+      }
+    },
+    "validation": {
+      "emailRequired": "Wpisz adres e-mail.",
+      "emailInvalid": "To nie wygląda na adres e-mail.",
+      "passwordRequired": "Wpisz hasło.",
+      "passwordTooShort": "Hasło jest za krótkie — potrzeba co najmniej 10 znaków.",
+      "passwordsDiffer": "Hasła się różnią. Wpisz je jeszcze raz.",
+      "displayNameRequired": "Wpisz, jak mają Cię widzieć bliscy.",
+      "consentRequired": "Zaznacz zgodę, żeby założyć konto."
+    },
+    "login": {
+      "title": "Zaloguj się",
+      "subtitle": "Witaj ponownie! Twoje listy czekają.",
+      "forgot": "Nie pamiętasz hasła?",
+      "submit": "Zaloguj się",
+      "submitting": "Loguję…",
+      "noAccount": "Nie masz konta?",
+      "createAccount": "Załóż konto",
+      "failedTitle": "Nie udało się zalogować",
+      "failedText": "E-mail lub hasło są nieprawidłowe. Sprawdź je i spróbuj ponownie.",
+      "retypePassword": "Wpisz hasło jeszcze raz.",
+      "oauthFailed": "Logowanie przez Google się nie powiodło. Spróbuj ponownie."
+    },
+    "register": {
+      "title": "Załóż konto",
+      "displayNameHint": "Tak zobaczą Cię bliscy.",
+      "consent": "Akceptuję {policy} i wiem, jak przetwarzane są moje dane.",
+      "policyLink": "politykę prywatności",
+      "submit": "Załóż konto",
+      "submitting": "Zakładam konto…",
+      "haveAccount": "Masz już konto?",
+      "fixFields": "Popraw {count} pole | Popraw {count} pola | Popraw {count} pól",
+      "fixFieldsText": "Zaznaczyliśmy je poniżej.",
+      "emailTaken": "Konto z tym adresem już istnieje. Zaloguj się albo zresetuj hasło."
+    },
+    "inbox": {
+      "title": "Sprawdź skrzynkę",
+      "text": "Wysłaliśmy link na {email}. Kliknij go, żeby potwierdzić adres. Link działa 24 godziny.",
+      "spamHint": "Nie widzisz wiadomości? Zajrzyj do folderu „Oferty” lub „Spam”.",
+      "resendIn": "Ponowne wysłanie możliwe za {time}",
+      "goToApp": "Przejdź do aplikacji"
+    },
+    "verify": {
+      "pageTitle": "Potwierdzenie adresu",
+      "verifying": "Potwierdzam adres…",
+      "successTitle": "Adres potwierdzony",
+      "successText": "Dziękujemy! Teraz możesz udostępniać listy, zapraszać bliskich i rezerwować prezenty.",
+      "start": "Zaczynamy",
+      "expiredTitle": "Ten link już wygasł",
+      "expiredText": "Linki do potwierdzenia działają 24 godziny. Wyślemy Ci nowy — zajmie to chwilę.",
+      "newLinkTo": "Link trafi na {email}.",
+      "sendNewLink": "Wyślij nowy link",
+      "loginToResend": "Zaloguj się, żeby wysłać nowy link",
+      "resend": "Wyślij ponownie",
+      "resendIn": "Wyślij ponownie ({time})",
+      "resent": "Wysłaliśmy nowy link na {email}.",
+      "bannerRegion": "Potwierdzenie adresu e-mail",
+      "bannerTitle": "Potwierdź swój adres e-mail",
+      "bannerText": "Kliknij link, który wysłaliśmy na {email}. Do tego czasu możesz dodać 5 rzeczy — udostępnianie i rezerwacje odblokują się po potwierdzeniu.",
+      "bannerDismiss": "Ukryj do następnego logowania"
+    },
+    "forgot": {
+      "title": "Nie pamiętasz hasła?",
+      "text": "Podaj adres e-mail konta. Wyślemy link do ustawienia nowego hasła.",
+      "submit": "Wyślij link",
+      "sentText": "Jeśli istnieje konto z adresem {email}, wysłaliśmy na nie link do zmiany hasła. Link działa 1 godzinę.",
+      "sentHint": "Nie przyszło? Sprawdź „Spam” albo upewnij się, że to ten adres.",
+      "googleHint": "Logujesz się przez Google? Wtedy nie potrzebujesz hasła — {link}.",
+      "googleHintLink": "wróć i wybierz „Kontynuuj z Google”"
+    },
+    "reset": {
+      "title": "Ustaw nowe hasło",
+      "forAccount": "Dla konta {email}",
+      "submit": "Zapisz nowe hasło",
+      "logoutNote": "Po zmianie wylogujemy Cię ze wszystkich urządzeń.",
+      "expiredText": "Ze względów bezpieczeństwa link do zmiany hasła działa 1 godzinę i tylko raz. Poproś o nowy.",
+      "doneTitle": "Hasło zmienione",
+      "doneText": "Zaloguj się nowym hasłem."
+    }
+  },
+  "profile": {
+    "saved": "Zapisano zmiany.",
+    "details": {
+      "title": "Twoje dane",
+      "avatarHint": "Inicjały pokazujemy bliskim zamiast zdjęcia.",
+      "displayName": "Wyświetlana nazwa",
+      "displayNameHint": "Tak widzą Cię osoby w Twoich kręgach.",
+      "verified": "Potwierdzony",
+      "notVerified": "Niepotwierdzony",
+      "emailHint": "Adresu nie można zmienić.",
+      "save": "Zapisz zmiany"
+    },
+    "language": {
+      "title": "Język aplikacji i e-maili",
+      "hint": "Dotyczy aplikacji, e-maili i powiadomień."
+    },
+    "signIn": {
+      "title": "Metody logowania",
+      "atLeastOne": "Musisz mieć co najmniej jedną.",
+      "passwordSet": "Ustawione",
+      "passwordNotSet": "Nie ustawione",
+      "change": "Zmień",
+      "setPassword": "Ustaw hasło",
+      "remove": "Usuń",
+      "google": "Google",
+      "googleConnected": "Połączone · {email}",
+      "googleNotConnected": "Niepołączone",
+      "unlink": "Odłącz",
+      "connect": "Połącz",
+      "lastMethodGoogle": "To Twoja jedyna metoda logowania, więc nie można jej odłączyć. Najpierw ustaw hasło.",
+      "lastMethodPassword": "To Twoja jedyna metoda logowania, więc nie można jej usunąć.",
+      "changePasswordTitle": "Zmień hasło",
+      "setPasswordTitle": "Ustaw hasło",
+      "otherDevicesNote": "Po zmianie wylogujemy Cię z innych urządzeń.",
+      "passwordSaved": "Hasło zapisane.",
+      "passwordRemoved": "Hasło usunięte. Logujesz się przez Google.",
+      "googleUnlinked": "Konto Google odłączone.",
+      "removePasswordTitle": "Usunąć hasło?",
+      "removePasswordText": "Będziesz logować się tylko przez Google. Hasło możesz ustawić ponownie w każdej chwili.",
+      "unlinkGoogleTitle": "Odłączyć Google?",
+      "unlinkGoogleText": "Będziesz logować się tylko hasłem. Google możesz połączyć ponownie w każdej chwili."
+    }
   },
   "errors": {
     "BAD_REQUEST": "Nieprawidłowe żądanie.",
@@ -34,10 +213,20 @@
     "UNSUPPORTED_MEDIA_TYPE": "Nieobsługiwany format danych.",
     "TOO_MANY_REQUESTS": "Zbyt wiele prób. Spróbuj ponownie za chwilę.",
     "INTERNAL": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie później.",
+    "EMAIL_TAKEN": "Konto z tym adresem e-mail już istnieje.",
+    "INVALID_CREDENTIALS": "Nieprawidłowy e-mail lub hasło.",
+    "TOKEN_INVALID_OR_EXPIRED": "Ten link wygasł albo został już użyty.",
+    "EMAIL_NOT_VERIFIED": "Najpierw potwierdź swój adres e-mail.",
+    "CURRENT_PASSWORD_INVALID": "Obecne hasło jest nieprawidłowe.",
+    "LAST_LOGIN_METHOD": "To jedyny sposób logowania na Twoje konto, więc nie można go usunąć.",
+    "PROVIDER_ALREADY_LINKED": "To konto Google jest już połączone z innym kontem.",
     "NETWORK": "Brak połączenia. Sprawdź internet i spróbuj ponownie."
   },
   "validation": {
     "NotBlank": "To pole jest wymagane.",
-    "Email": "Podaj poprawny adres e-mail."
+    "Email": "Podaj poprawny adres e-mail.",
+    "Size": "Nieprawidłowa długość.",
+    "AssertTrue": "To pole jest wymagane.",
+    "Pattern": "Nieprawidłowa wartość."
   }
 }

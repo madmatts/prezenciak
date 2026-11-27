@@ -22,6 +22,9 @@
         <archunit.version>1.5.1</archunit.version>
         <spotless.version>3.12.0</spotless.version>
         <maven-enforcer.version>3.7.0</maven-enforcer.version>
+        <bucket4j.version>8.23.0</bucket4j.version>
+        <greenmail.version>2.1.15</greenmail.version>
+        <sonar.organization>madmatts-1</sonar.organization>
     </properties>
 
     <dependencies>
@@ -87,6 +90,13 @@
             <version>${springdoc.version}</version>
         </dependency>
 
+        <!-- In-memory rate limiting (per IP); per-email limits live in the database (D-10) -->
+        <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j_jdk17-core</artifactId>
+            <version>${bucket4j.version}</version>
+        </dependency>
+
         <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -121,6 +131,12 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>testcontainers-postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.icegreen</groupId>
+            <artifactId>greenmail-junit5</artifactId>
+            <version>${greenmail.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{email/layout :: email(lang='pl', preheader='Jedno kliknięcie i możesz udostępniać listy.',
+        heading=${displayName} ? |Cześć ${displayName}, potwierdź swój adres| : 'Potwierdź swój adres',
+        content=~{::content}, actionLabel='Potwierdź adres e-mail', why=~{::why},
+        footerNote='Wiadomość wysłana automatycznie — nie odpowiadaj na nią.')}">
+<body>
+<th:block th:fragment="content">
+  <p style="margin:0 0 16px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#1E1A17">Dziękujemy za założenie konta w <span th:text="${appName}">Wishka</span>. Kliknij przycisk, żeby potwierdzić, że ten adres należy do Ciebie.</p>
+  <p style="margin:0 0 16px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#1E1A17">Po potwierdzeniu odblokujesz udostępnianie list, zapraszanie bliskich i rezerwowanie prezentów. Link działa 24 godziny.</p>
+</th:block>
+<th:block th:fragment="why"><strong style="color:#48413B">Dlaczego dostajesz tę wiadomość?</strong> Ktoś — prawdopodobnie Ty — założył konto w <span th:text="${appName}">Wishka</span> z tym adresem. Jeśli to nie Ty, zignoruj tę wiadomość: konto nie zostanie aktywowane.</th:block>
+</body>
+</html>

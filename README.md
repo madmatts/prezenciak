@@ -34,8 +34,18 @@ cd backend && ./mvnw spring-boot:run
 cd frontend && npm install && npm run dev
 ```
 
-Check: <http://localhost:5173> shows Wishka with "Serwer działa". `curl -H 'Accept-Language: en'
+Check: <http://localhost:5173> opens the Wishka login page. `curl -H 'Accept-Language: en'
 localhost:8080/api/public/ping` answers in English.
+
+### Accounts and email (Phase 1)
+
+- Register at <http://localhost:5173/register>. The verification email lands in **Mailpit** (<http://127.0.0.1:8025>),
+  in the language you used. Password-reset emails go there too.
+- **Google login** is optional: set `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` in `.env.dev` (OAuth client of type
+  "Web application", redirect URI `http://localhost:5173/login/oauth2/code/google`). Without them the button is
+  hidden.
+- Sessions are HttpOnly cookies (`WISHKA_SESSION`, Spring Session JDBC); the SPA echoes the `XSRF-TOKEN` cookie in
+  `X-XSRF-TOKEN` on every state-changing request.
 
 No local database at hand? `TestWishkaApplication` (backend test sources) starts the backend against a throwaway
 Testcontainers PostgreSQL.
@@ -45,7 +55,7 @@ Testcontainers PostgreSQL.
 | Where | Command | What |
 |---|---|---|
 | backend | `./mvnw test` | unit tests, i18n key parity, ArchUnit module rules |
-| backend | `./mvnw verify` | + integration tests (`*IT`, PostgreSQL 17 via Testcontainers) + Spotless check |
+| backend | `./mvnw verify` | + integration tests (`*IT`, PostgreSQL 17 via Testcontainers, GreenMail SMTP on port 3025) + Spotless check |
 | backend | `./mvnw spotless:apply` | format Java code (palantir-java-format) |
 | frontend | `npm run lint` | oxlint + ESLint, incl. "no raw text" and "missing i18n key" rules |
 | frontend | `npm run type-check` | vue-tsc |

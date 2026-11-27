@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--/*
+  Base email layout (design P1-email-base): 600 px, one column, table layout, inline styles (mail clients ignore
+  CSS variables; values come from the tokens primary-600/700, text, text-muted). Works without images: the logo is
+  text, the button is a coloured table cell. Each type has <type>_pl.html / <type>_en.html that call this fragment.
+*/-->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="email(lang, preheader, heading, content, actionLabel, why, footerNote)" th:lang="${lang}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+  <title th:text="${heading}">Wishka</title>
+</head>
+<body style="margin:0;padding:0;background:#F3F0EC">
+<span style="display:none;max-height:0;overflow:hidden" th:text="${preheader}">preheader</span>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#F3F0EC">
+  <tr><td align="center" style="padding:24px 0">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;max-width:600px">
+      <tr><td style="padding:8px 40px 20px">
+        <span style="font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:24px;font-weight:800;color:#8F1F47" th:text="${appName}">Wishka</span>
+      </td></tr>
+      <tr><td style="padding:0 24px">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:14px;border-collapse:separate">
+          <tr><td style="padding:40px 40px">
+            <h1 style="margin:0 0 16px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:24px;line-height:32px;font-weight:700;color:#1E1A17" th:text="${heading}">Heading</h1>
+            <th:block th:replace="${content}"></th:block>
+            <table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 24px"><tr>
+              <td style="background:#AE2A57;border-radius:10px;text-align:center">
+                <a th:href="${actionUrl}" href="#" style="display:block;padding:14px 28px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#FFFFFF;text-decoration:none" th:text="${actionLabel}">Action</a>
+              </td></tr></table>
+            <p style="margin:0 0 4px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#5F574F"
+               th:text="${lang == 'pl'} ? 'Przycisk nie działa? Skopiuj ten adres do przeglądarki:' : 'Button not working? Copy this address into your browser:'">Fallback</p>
+            <p style="margin:0;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;word-break:break-all">
+              <a th:href="${actionUrl}" href="#" style="color:#8F1F47" th:text="${actionUrl}">link</a></p>
+          </td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:24px 40px 8px">
+        <p style="margin:0 0 12px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:#5F574F">
+          <th:block th:replace="${why}"></th:block></p>
+        <p style="margin:0;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:#5F574F">
+          <span th:text="${appName}">Wishka</span> · <a th:href="${appUrl}" href="#" style="color:#8F1F47" th:text="${appHost}">host</a> · <span th:text="${footerNote}">note</span></p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

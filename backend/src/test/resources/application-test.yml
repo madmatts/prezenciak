@@ -1,4 +1,15 @@
-# Integration tests: PostgreSQL 17 from Testcontainers (@ServiceConnection); no SMTP server.
+# Integration tests: PostgreSQL 17 from Testcontainers (@ServiceConnection), GreenMail as SMTP on localhost:3025.
+spring:
+  mail:
+    host: 127.0.0.1
+    port: 3025
+
+app:
+  base-url: http://wishka.test
+  notifications:
+    # Tests run the dispatcher explicitly; the schedule never fires during a test run.
+    dispatch-interval: PT1H
+
 management:
   health:
     mail:

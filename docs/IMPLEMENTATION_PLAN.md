@@ -220,6 +220,23 @@ delivers localized emails to Mailpit.
 - OAuth: `oauth2Login()` mock → new user / linked user.
 - ArchUnit: only `notification` touches outbox tables.
 
+### Implementation notes (done 2026-11-27)
+- Extra endpoints: `POST /api/auth/password-reset/check` (the reset page shows the account and the expired state before
+  typing, design P1-reset), `PUT/DELETE /api/me/password`, `DELETE /api/me/providers/google` (D-38),
+  `GET /api/public/auth/config` (Google button only when configured). `GET /api/me` returns `linkedLogins` with the
+  Google email (design P1-profile).
+- Frontend routes follow the design links: `/verify?token=`, `/reset?token=`, `/welcome` (check your inbox),
+  `/auth/complete` (after Google). Sections of later phases show a "coming soon" placeholder in the shell.
+- Registration logs the user in immediately (unverified, D-6). Sessions last 30 days of inactivity.
+- One-time tokens are `VARCHAR(64)` SHA-256 hashes. Raw tokens exist only in the email, and the outbox payload is
+  wiped once delivered.
+- Password strength meter: a small explicit heuristic instead of zxcvbn (the design mentioned it only as an example).
+  The server enforces the 10-character minimum.
+- Design tokens and component classes come from the hand-off `wishka.css` (`frontend/src/assets/design/`). Icons:
+  Lucide (`@lucide/vue`). Font: Plus Jakarta Sans, self-hosted (`@fontsource-variable`).
+- Not yet built: the item-limit, share-limit and reserve-limit screens (Phases 2, 5, 6) and the account deletion
+  entry (Phase 8).
+
 ### Acceptance criteria (manual)
 1. Register in PL → Mailpit shows a **Polish** verification email. Register with UI in EN → English email.
 2. The verification link opens the app, the banner disappears.

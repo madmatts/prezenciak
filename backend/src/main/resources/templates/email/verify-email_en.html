@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{email/layout :: email(lang='en', preheader='One click and you can start sharing your lists.',
+        heading=${displayName} ? |Hi ${displayName}, please confirm your email| : 'Please confirm your email',
+        content=~{::content}, actionLabel='Confirm email address', why=~{::why},
+        footerNote='This message was sent automatically — please don’t reply.')}">
+<body>
+<th:block th:fragment="content">
+  <p style="margin:0 0 16px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#1E1A17">Thanks for creating a <span th:text="${appName}">Wishka</span> account. Click the button to confirm that this address belongs to you.</p>
+  <p style="margin:0 0 16px;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#1E1A17">Once confirmed, you can share lists, invite your family and friends, and reserve gifts. The link is valid for 24 hours.</p>
+</th:block>
+<th:block th:fragment="why"><strong style="color:#48413B">Why am I getting this email?</strong> Someone — probably you — created a <span th:text="${appName}">Wishka</span> account with this address. If it wasn’t you, just ignore this email: the account won’t be activated.</th:block>
+</body>
+</html>

@@ -21,6 +21,8 @@
     "test:unit:ci": "vitest run --reporter=default --reporter=junit --outputFile.junit=test-results/unit-junit.xml"
   },
   "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@lucide/vue": "^1.82.0",
     "pinia": "^4.1.0",
     "vue": "^3.5.46",
     "vue-i18n": "^11.4.24",

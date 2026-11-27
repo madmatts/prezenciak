@@ -1,0 +1,14 @@
+[# th:if="${displayName}"]Hi [(${displayName})], please confirm your email[/][# th:unless="${displayName}"]Please confirm your email[/]
+
+Thanks for creating a [(${appName})] account. Open this link
+to confirm that this address belongs to you:
+
+[(${actionUrl})]
+
+The link is valid for 24 hours.
+
+—
+Why am I getting this email? Someone — probably you — created
+a [(${appName})] account with this address. If it wasn't you,
+just ignore this email.
+[(${appName})] · [(${appUrl})]

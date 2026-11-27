@@ -1,14 +1,29 @@
 @import 'tailwindcss';
-
-/*
- * Design tokens. Phase 0 uses Tailwind defaults; Phase 1 replaces this block with the Wishka tokens
- * from the Claude Design hand-off (wishka.css -> @theme), see docs/design/README.md.
- */
-@theme {
-}
+@import '@fontsource-variable/plus-jakarta-sans';
+@import './design/tokens.css';
+@import './design/components.css' layer(components);
 
 @layer base {
-  html {
-    @apply bg-white text-gray-900 antialiased;
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-canvas);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-text-link);
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--color-primary-800);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
   }
 }
