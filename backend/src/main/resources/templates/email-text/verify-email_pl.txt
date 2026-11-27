@@ -1,0 +1,14 @@
+[# th:if="${displayName}"]Cześć [(${displayName})], potwierdź swój adres[/][# th:unless="${displayName}"]Potwierdź swój adres[/]
+
+Dziękujemy za założenie konta w [(${appName})]. Otwórz ten link,
+żeby potwierdzić, że ten adres należy do Ciebie:
+
+[(${actionUrl})]
+
+Link działa 24 godziny.
+
+—
+Dlaczego dostajesz tę wiadomość? Ktoś — prawdopodobnie Ty —
+założył konto w [(${appName})] z tym adresem. Jeśli to nie Ty,
+zignoruj tę wiadomość.
+[(${appName})] · [(${appUrl})]

@@ -9,17 +9,20 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import pl.wishka.common.error.ErrorCode;
+import pl.wishka.notification.api.NotificationType;
 
 /** Golden rule 4: every backend text exists in Polish and English, in the same commit. */
 class I18nKeyParityTest {
 
-    private static final Path EMAIL_TEMPLATES = Path.of("src/main/resources/templates/email");
+    private static final List<Path> EMAIL_TEMPLATE_DIRS =
+            List.of(Path.of("src/main/resources/templates/email"), Path.of("src/main/resources/templates/email-text"));
 
     @Test
     void polishAndEnglishMessagesHaveTheSameKeys() throws IOException {
@@ -61,20 +64,35 @@ class I18nKeyParityTest {
 
     @Test
     void everyEmailTemplateExistsInBothLocales() throws IOException {
-        if (!Files.isDirectory(EMAIL_TEMPLATES)) {
-            return;
+        for (Path dir : EMAIL_TEMPLATE_DIRS) {
+            if (!Files.isDirectory(dir)) {
+                continue;
+            }
+            Set<String> templates;
+            try (Stream<Path> files = Files.list(dir)) {
+                templates = files.map(p -> p.getFileName().toString()).collect(Collectors.toSet());
+            }
+            for (String template : templates) {
+                if (template.contains("_pl.")) {
+                    assertThat(templates).as(dir.toString()).contains(template.replace("_pl.", "_en."));
+                } else if (template.contains("_en.")) {
+                    assertThat(templates).as(dir.toString()).contains(template.replace("_en.", "_pl."));
+                }
+            }
         }
-        Set<String> templates;
-        try (Stream<Path> files = Files.list(EMAIL_TEMPLATES)) {
-            templates = files.map(p -> p.getFileName().toString())
-                    .filter(name -> name.endsWith(".html"))
-                    .collect(Collectors.toSet());
-        }
-        for (String template : templates) {
-            if (template.endsWith("_pl.html")) {
-                assertThat(templates).contains(template.replace("_pl.html", "_en.html"));
-            } else if (template.endsWith("_en.html")) {
-                assertThat(templates).contains(template.replace("_en.html", "_pl.html"));
+    }
+
+    @Test
+    void everyNotificationTypeHasSubjectsAndTemplatesInBothLocales() throws IOException {
+        for (NotificationType type : NotificationType.values()) {
+            for (String locale : new String[] {"pl", "en"}) {
+                assertThat(keys("i18n/messages_" + locale + ".properties"))
+                        .contains("email." + type.name() + ".subject");
+                assertThat(Path.of("src/main/resources/templates/email/" + type.template() + "_" + locale + ".html"))
+                        .exists();
+                assertThat(Path.of(
+                                "src/main/resources/templates/email-text/" + type.template() + "_" + locale + ".txt"))
+                        .exists();
             }
         }
     }

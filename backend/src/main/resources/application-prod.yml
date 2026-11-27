@@ -1,10 +1,6 @@
 # Production (VPS behind nginx). All values from environment variables / .env, never committed.
 server:
   forward-headers-strategy: native
-  servlet:
-    session:
-      cookie:
-        secure: true
 
 springdoc:
   api-docs:
