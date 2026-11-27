@@ -2,10 +2,10 @@ package pl.wishka.user.application;
 
 import java.time.Clock;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.jspecify.annotations.Nullable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ import pl.wishka.common.error.ApiException;
 import pl.wishka.common.error.ErrorCode;
 import pl.wishka.common.i18n.SupportedLocales;
 import pl.wishka.user.api.AuthProvider;
+import pl.wishka.user.api.LinkedLogin;
 import pl.wishka.user.api.NewUser;
 import pl.wishka.user.api.UserAccount;
 import pl.wishka.user.api.UserAccounts;
 import pl.wishka.user.domain.User;
-import pl.wishka.user.domain.UserAuthProviderLink;
 import pl.wishka.user.domain.UserRepository;
 
 @Service
@@ -160,6 +160,9 @@ public class UserAccountService implements UserAccounts {
                 user.passwordHash(),
                 user.locale(),
                 user.emailVerified(),
-                user.providers().stream().map(UserAuthProviderLink::provider).collect(Collectors.toUnmodifiableSet()));
+                user.providers().stream()
+                        .map(link -> new LinkedLogin(link.provider(), link.email()))
+                        .sorted(Comparator.comparing(LinkedLogin::provider))
+                        .toList());
     }
 }

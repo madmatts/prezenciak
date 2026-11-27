@@ -1,13 +1,13 @@
 package pl.wishka.user.web;
 
 import java.util.List;
-import pl.wishka.user.api.AuthProvider;
+import pl.wishka.user.api.LinkedLogin;
 import pl.wishka.user.api.UserAccount;
 
 /**
  * The logged-in user's profile.
  *
- * @param providers linked external logins, e.g. {@code ["GOOGLE"]}
+ * @param linkedLogins external logins, e.g. Google with the Google account's email
  * @param hasPassword whether a password is set (a Google-only user has none)
  */
 public record MeResponse(
@@ -17,7 +17,7 @@ public record MeResponse(
         String locale,
         boolean emailVerified,
         boolean hasPassword,
-        List<AuthProvider> providers) {
+        List<LinkedLogin> linkedLogins) {
 
     static MeResponse from(UserAccount account) {
         return new MeResponse(
@@ -27,6 +27,6 @@ public record MeResponse(
                 account.locale().getLanguage(),
                 account.emailVerified(),
                 account.hasPassword(),
-                account.providers().stream().sorted().toList());
+                account.linkedLogins());
     }
 }

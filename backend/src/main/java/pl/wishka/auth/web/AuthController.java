@@ -129,6 +129,14 @@ public class AuthController {
         return ResponseEntity.accepted().build();
     }
 
+    /** Validates a reset link before the user types a new password; answers with the account's email. */
+    @PostMapping("/password-reset/check")
+    public PasswordResetCheckResponse checkPasswordReset(@Valid @RequestBody TokenRequest body) {
+        return new PasswordResetCheckResponse(passwordReset.emailForToken(body.token()));
+    }
+
+    public record PasswordResetCheckResponse(String email) {}
+
     @PostMapping("/password-reset/confirm")
     public ResponseEntity<Void> confirmPasswordReset(@Valid @RequestBody PasswordResetConfirmRequest body) {
         passwordReset.confirm(body.token(), body.password());

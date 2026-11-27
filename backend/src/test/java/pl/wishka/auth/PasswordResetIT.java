@@ -37,6 +37,10 @@ class PasswordResetIT extends AbstractIntegrationTest {
         assertThat(Mails.subject(resetMail)).isEqualTo("Wishka: ustaw nowe hasło");
         assertThat(Mails.text(resetMail)).contains("http://wishka.test/reset?token=");
         String token = Mails.token(resetMail);
+        assertThat(client().post("/api/auth/password-reset/check", "{\"token\":\"%s\"}".formatted(token)))
+                .hasStatus(HttpStatus.OK)
+                .bodyJson()
+                .hasPathSatisfying("$.email", e -> assertThat(e).isEqualTo(email));
 
         assertThat(client().post(
                                 "/api/auth/password-reset/confirm",
@@ -78,6 +82,8 @@ class PasswordResetIT extends AbstractIntegrationTest {
                         + " (select id from users where email = ?)",
                 email);
 
+        assertThat(client().post("/api/auth/password-reset/check", "{\"token\":\"%s\"}".formatted(token)))
+                .hasStatus(HttpStatus.BAD_REQUEST);
         assertThat(client().post(
                                 "/api/auth/password-reset/confirm",
                                 "{\"token\":\"%s\",\"password\":\"%s\"}".formatted(token, NEW)))

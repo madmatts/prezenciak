@@ -59,7 +59,9 @@ class AccountSecurityIT extends AbstractIntegrationTest {
                 .bodyJson()
                 .hasPathSatisfying(
                         "$.id", id -> assertThat(id).convertTo(Long.class).isEqualTo(userId))
-                .hasPathSatisfying("$.providers", p -> assertThat(p).asList().containsExactly("GOOGLE"));
+                .hasPathSatisfying(
+                        "$.linkedLogins[0].provider", p -> assertThat(p).isEqualTo("GOOGLE"))
+                .hasPathSatisfying("$.linkedLogins[0].email", e -> assertThat(e).isEqualTo(email));
 
         assertThat(browser.delete("/api/me/providers/google")).hasStatus(HttpStatus.NO_CONTENT);
         assertThat(browser.delete("/api/me/password"))

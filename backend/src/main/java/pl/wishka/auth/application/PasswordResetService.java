@@ -77,17 +77,29 @@ public class PasswordResetService {
                 Map.of("actionUrl", links.resetPassword(token.raw()))));
     }
 
+    /** The account a still-valid reset link belongs to (shown on the "set a new password" page). */
+    public String emailForToken(String rawToken) {
+        return usableToken(rawToken)
+                .flatMap(token -> userAccounts.findById(token.userId()))
+                .map(UserAccount::email)
+                .orElseThrow(() -> new ApiException(ErrorCode.TOKEN_INVALID_OR_EXPIRED));
+    }
+
     /** Sets the new password, verifies the email (the link proved ownership) and logs out every session. */
     @Transactional
     public void confirm(String rawToken, String newPassword) {
         Instant now = clock.instant();
-        PasswordResetToken token = tokens.findByTokenHash(TokenHasher.hash(rawToken))
-                .filter(t -> t.isUsable(now))
-                .orElseThrow(() -> new ApiException(ErrorCode.TOKEN_INVALID_OR_EXPIRED));
+        PasswordResetToken token =
+                usableToken(rawToken).orElseThrow(() -> new ApiException(ErrorCode.TOKEN_INVALID_OR_EXPIRED));
         token.markUsed(now);
         tokens.invalidateAll(token.userId(), now);
         userAccounts.changePassword(token.userId(), passwordEncoder.encode(newPassword));
         userAccounts.markEmailVerified(token.userId());
         sessions.terminateAll(token.userId());
+    }
+
+    private Optional<PasswordResetToken> usableToken(String rawToken) {
+        Instant now = clock.instant();
+        return tokens.findByTokenHash(TokenHasher.hash(rawToken)).filter(t -> t.isUsable(now));
     }
 }

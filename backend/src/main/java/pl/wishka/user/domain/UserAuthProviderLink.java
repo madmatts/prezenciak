@@ -58,4 +58,8 @@ public class UserAuthProviderLink {
     public String subject() {
         return subject;
     }
+
+    public @Nullable String email() {
+        return email;
+    }
 }

@@ -1,7 +1,7 @@
 package pl.wishka.user.api;
 
+import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -15,7 +15,7 @@ public record UserAccount(
         @Nullable String passwordHash,
         Locale locale,
         boolean emailVerified,
-        Set<AuthProvider> providers) {
+        List<LinkedLogin> linkedLogins) {
 
     public boolean hasPassword() {
         return passwordHash != null;
@@ -23,6 +23,10 @@ public record UserAccount(
 
     /** Number of ways this user can log in; the last one can never be removed (D-38). */
     public int loginMethodCount() {
-        return (hasPassword() ? 1 : 0) + providers.size();
+        return (hasPassword() ? 1 : 0) + linkedLogins.size();
+    }
+
+    public boolean hasLinked(AuthProvider provider) {
+        return linkedLogins.stream().anyMatch(login -> login.provider() == provider);
     }
 }
