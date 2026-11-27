@@ -1,0 +1,43 @@
+{
+  "common": {
+    "language": {
+      "label": "Język",
+      "pl": "Polski",
+      "en": "English"
+    },
+    "close": "Zamknij"
+  },
+  "home": {
+    "title": "@:app.name",
+    "tagline": "Listy życzeń dla rodziny i przyjaciół, bez psucia niespodzianek.",
+    "comingSoon": "Pracujemy nad pierwszą wersją. Wkrótce więcej.",
+    "apiStatus": {
+      "label": "Stan serwera",
+      "checking": "Sprawdzam połączenie…",
+      "ok": "Serwer działa",
+      "error": "Brak połączenia z serwerem"
+    }
+  },
+  "notFound": {
+    "title": "Nie ma takiej strony",
+    "backHome": "Wróć na stronę główną"
+  },
+  "errors": {
+    "BAD_REQUEST": "Nieprawidłowe żądanie.",
+    "VALIDATION_FAILED": "Niektóre pola są wypełnione nieprawidłowo.",
+    "UNAUTHORIZED": "Zaloguj się, aby kontynuować.",
+    "FORBIDDEN": "Nie masz dostępu do tego zasobu.",
+    "CSRF_INVALID": "Sesja wygasła lub żądanie jest nieprawidłowe. Odśwież stronę i spróbuj ponownie.",
+    "NOT_FOUND": "Nie znaleziono.",
+    "METHOD_NOT_ALLOWED": "Ta operacja nie jest dozwolona.",
+    "CONFLICT": "Dane zostały w międzyczasie zmienione. Odśwież i spróbuj ponownie.",
+    "UNSUPPORTED_MEDIA_TYPE": "Nieobsługiwany format danych.",
+    "TOO_MANY_REQUESTS": "Zbyt wiele prób. Spróbuj ponownie za chwilę.",
+    "INTERNAL": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie później.",
+    "NETWORK": "Brak połączenia. Sprawdź internet i spróbuj ponownie."
+  },
+  "validation": {
+    "NotBlank": "To pole jest wymagane.",
+    "Email": "Podaj poprawny adres e-mail."
+  }
+}

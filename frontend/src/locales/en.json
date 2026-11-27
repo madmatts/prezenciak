@@ -1,0 +1,43 @@
+{
+  "common": {
+    "language": {
+      "label": "Language",
+      "pl": "Polski",
+      "en": "English"
+    },
+    "close": "Close"
+  },
+  "home": {
+    "title": "@:app.name",
+    "tagline": "Wishlists for family and friends, without spoiling the surprise.",
+    "comingSoon": "We're working on the first version. More soon.",
+    "apiStatus": {
+      "label": "Server status",
+      "checking": "Checking the connection…",
+      "ok": "Server is running",
+      "error": "Can't reach the server"
+    }
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "backHome": "Back to the home page"
+  },
+  "errors": {
+    "BAD_REQUEST": "The request is invalid.",
+    "VALIDATION_FAILED": "Some fields are not filled in correctly.",
+    "UNAUTHORIZED": "Please log in to continue.",
+    "FORBIDDEN": "You don't have access to this resource.",
+    "CSRF_INVALID": "Your session expired or the request is invalid. Refresh the page and try again.",
+    "NOT_FOUND": "Not found.",
+    "METHOD_NOT_ALLOWED": "This operation is not allowed.",
+    "CONFLICT": "The data was changed in the meantime. Refresh and try again.",
+    "UNSUPPORTED_MEDIA_TYPE": "Unsupported data format.",
+    "TOO_MANY_REQUESTS": "Too many attempts. Please try again in a moment.",
+    "INTERNAL": "Something went wrong on our side. Please try again later.",
+    "NETWORK": "No connection. Check your internet and try again."
+  },
+  "validation": {
+    "NotBlank": "This field is required.",
+    "Email": "Enter a valid email address."
+  }
+}
