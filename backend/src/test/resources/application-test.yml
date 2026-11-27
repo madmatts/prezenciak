@@ -1,0 +1,5 @@
+# Integration tests: PostgreSQL 17 from Testcontainers (@ServiceConnection); no SMTP server.
+management:
+  health:
+    mail:
+      enabled: false

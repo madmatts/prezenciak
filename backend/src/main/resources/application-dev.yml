@@ -1,0 +1,11 @@
+# Local development against the existing dev containers (dev-postgres, dev-mailpit).
+# Values come from /.env.dev (git-ignored); see /.env.example for the full list.
+spring:
+  config:
+    import:
+      - optional:file:../.env.dev[.properties]
+      - optional:file:./.env.dev[.properties]
+
+logging:
+  level:
+    pl.wishka: DEBUG

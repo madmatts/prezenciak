@@ -1,0 +1,59 @@
+# Wishka backend - shared configuration.
+# Every environment-specific value comes from environment variables (documented in /.env.example).
+spring:
+  application:
+    name: wishka
+  profiles:
+    default: dev
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://127.0.0.1:5432/wishka}
+    username: ${DB_USER:wishka}
+    password: ${DB_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  session:
+    jdbc:
+      initialize-schema: never # schema owned by Flyway (V2)
+  mvc:
+    problemdetails:
+      enabled: true
+  mail:
+    host: ${MAIL_HOST:127.0.0.1}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+  error:
+    include-message: never
+    include-stacktrace: never
+
+app:
+  name: ${APP_NAME:Wishka}
+  base-url: ${APP_BASE_URL:http://localhost:5173}
+  mail-from: ${MAIL_FROM:no-reply@wishka.pl}
+  image-storage-path: ${IMAGE_STORAGE_PATH:./data/images}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState,db
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
