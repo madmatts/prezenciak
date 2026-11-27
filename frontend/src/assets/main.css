@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens. Phase 0 uses Tailwind defaults; Phase 1 replaces this block with the Wishka tokens
+ * from the Claude Design hand-off (wishka.css -> @theme), see docs/design/README.md.
+ */
+@theme {
+}
+
+@layer base {
+  html {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}

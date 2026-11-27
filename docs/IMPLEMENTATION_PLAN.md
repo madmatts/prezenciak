@@ -22,7 +22,7 @@ not from memory.
 |---|---|---|
 | Java (LTS) | **25** | Latest LTS (27 is the newest non-LTS). Local JDK: 25.0.5.1 ✔ |
 | Spring Boot | **4.2.0** (GA) | Starter parent; Spring Framework 7 / Spring Security 7 through the BOM |
-| Flyway | 13.13.0 | Managed by the Boot BOM; we use the BOM version, not this number |
+| Flyway | 12.11 (Boot BOM) | Latest release is 13.13. We keep the BOM version (ADR 0001) |
 | Testcontainers | 2.0.5 | Managed by the Boot BOM |
 | ArchUnit (junit5) | 1.5.1 | |
 | Jsoup | 1.24.1 | |
@@ -133,6 +133,7 @@ Phase 0. Configured **in the TeamCity UI** per D-36. The exact steps and paramet
 
 ### Flyway migrations
 - `V1__p0_baseline.sql`
+- `V2__p0_spring_session.sql` (moved here from Phase 1: Spring Session's cleanup job needs the tables as soon as the app starts)
 
 ### API endpoints
 - `GET /actuator/health`, `GET /api/public/ping`, `GET /v3/api-docs` (dev only)
@@ -196,7 +197,6 @@ delivers localized emails to Mailpit.
   the **design Package 1** screens, together with the design tokens → Tailwind 4 `@theme`.
 
 ### Flyway migrations
-- `V2__p1_spring_session.sql` (Spring Session JDBC schema, copied from the jar, so not auto-initialized)
 - `V3__p1_users.sql` (users, user_auth_providers, email_verification_tokens, password_reset_tokens)
 - `V4__p1_outbox.sql` (outbox_events, notification_deliveries)
 
